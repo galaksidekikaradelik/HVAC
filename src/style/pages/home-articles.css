@@ -1,0 +1,357 @@
+
+/* =========================================
+   HOME ARTICLES — TECHNICAL CENTER
+========================================= */
+
+.home-articles {
+  background: #F7F5F1;
+  padding: clamp(70px, 7vw, 110px) 0;
+}
+
+/* =========================================
+   HEADING
+========================================= */
+
+.home-articles__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+
+  margin-bottom: 34px;
+}
+
+.home-articles__heading-content {
+  min-width: 0;
+  max-width: 790px;
+}
+
+.home-articles__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  margin-bottom: 17px;
+
+  color: #293F35;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.15em;
+}
+
+.home-articles__eyebrow-line {
+  display: block;
+  width: 74px;
+  height: 1px;
+  background: rgba(41, 63, 53, 0.45);
+}
+
+.home-articles__heading h2 {
+  margin: 0;
+
+  color: #282F36;
+  font-size: clamp(30px, 3.15vw, 46px);
+  font-weight: 600;
+  line-height: 1.18;
+  letter-spacing: -0.045em;
+}
+
+.home-articles__heading-content > p {
+  max-width: 680px;
+  margin-top: 13px;
+
+  color: #697780;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+/* ALL ARTICLES LINK */
+
+.home-articles__all-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  flex-shrink: 0;
+
+  color: #526324;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition:
+    gap 250ms ease,
+    color 250ms ease;
+}
+
+.home-articles__all-link:hover {
+  gap: 21px;
+  color: #8A9630;
+}
+
+/* =========================================
+   CARDS GRID
+========================================= */
+
+.home-articles__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* CARD */
+
+.home-articles__card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+
+  overflow: hidden;
+
+  background: #FBFAF7;
+  border: 1px solid rgba(40, 47, 54, 0.1);
+  border-radius: 9px;
+
+  transition:
+    transform 300ms ease,
+    border-color 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.home-articles__card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(138, 150, 48, 0.3);
+
+  box-shadow: 0 14px 38px rgba(40, 47, 54, 0.055);
+}
+
+/* IMAGE */
+
+.home-articles__image-link {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2.2 / 1;
+  overflow: hidden;
+
+  background: #E9E9E3;
+}
+
+.home-articles__image-link img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  transition: transform 550ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.home-articles__card:hover
+.home-articles__image-link img {
+  transform: scale(1.055);
+}
+
+/* CONTENT */
+
+.home-articles__card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: flex-start;
+
+  padding: 22px 26px 26px;
+}
+
+/* META */
+
+.home-articles__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 17px;
+
+  margin-bottom: 13px;
+}
+
+.home-articles__category {
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 23px;
+  padding: 4px 9px;
+
+  color: #30452A;
+  background: #E7EBCF;
+  border-radius: 5px;
+
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.home-articles__read-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  color: #718087;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+/* TITLE */
+
+.home-articles__card-title {
+  margin: 0;
+
+  color: #282F36;
+  font-size: clamp(17px, 1.4vw, 21px);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.025em;
+}
+
+.home-articles__card-title a {
+  color: inherit;
+  text-decoration: none;
+
+  transition: color 200ms ease;
+}
+
+.home-articles__card-title a:hover {
+  color: #75812C;
+}
+
+/* DESCRIPTION */
+
+.home-articles__card-description {
+  margin-top: 13px;
+  margin-bottom: 25px;
+
+  color: #697780;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+/* READ MORE */
+
+.home-articles__read-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 13px;
+
+  margin-top: auto;
+
+  color: #456332;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+  text-decoration: none;
+
+  transition:
+    gap 250ms ease,
+    color 250ms ease;
+}
+
+.home-articles__read-link:hover {
+  gap: 19px;
+  color: #8A9630;
+}
+
+/* ACCESSIBILITY */
+
+.home-articles a:focus-visible {
+  outline: 2px solid #8A9630;
+  outline-offset: 4px;
+  border-radius: 3px;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1024px) {
+  .home-articles__grid {
+    gap: 16px;
+  }
+
+  .home-articles__card-body {
+    padding: 19px 18px 23px;
+  }
+
+  .home-articles__card-title {
+    font-size: 18px;
+  }
+
+  .home-articles__heading-content > p {
+    font-size: 15px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+  .home-articles {
+    padding: 65px 0;
+  }
+
+  .home-articles__heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  .home-articles__heading h2 {
+    font-size: clamp(29px, 5vw, 38px);
+  }
+
+  .home-articles__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-articles__grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .home-articles__card-body {
+    padding: 22px;
+  }
+
+  .home-articles__image-link {
+    aspect-ratio: 2 / 1;
+  }
+
+  .home-articles__card-title {
+    font-size: 21px;
+  }
+
+  .home-articles__card-description {
+    font-size: 14px;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .home-articles__card,
+  .home-articles__image-link img,
+  .home-articles__all-link,
+  .home-articles__read-link,
+  .home-articles__card-title a {
+    transition: none;
+  }
+}

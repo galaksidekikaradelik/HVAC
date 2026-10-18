@@ -1,0 +1,214 @@
+
+/* =========================================
+   SPAREHVAC — HOME BRANDS
+========================================= */
+
+.home-brands {
+  width: 100%;
+  overflow: hidden;
+  padding: 36px 0 48px;
+
+  background: #F5F7F5;
+  border-top: 1px solid var(--color-border-light);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+/* HEADING */
+
+.home-brands__heading {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.home-brands__heading p {
+  color: var(--color-text-secondary);
+  text-align: center;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+/* SLIDER */
+
+.home-brands__slider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+}
+
+.home-brands__track {
+  display: flex;
+  width: max-content;
+  animation: home-brands-scroll 42s linear infinite;
+  will-change: transform;
+}
+
+.home-brands__slider:hover .home-brands__track {
+  animation-play-state: paused;
+}
+
+.home-brands__group {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-shrink: 0;
+  padding-right: 22px;
+}
+
+/* BRAND CARD */
+
+.home-brands__card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  width: 230px;
+  height: 94px;
+  padding: 18px 26px;
+
+  background: #FFFFFF;
+  border: 1px solid #E5E9E6;
+  border-radius: 12px;
+
+  transition:
+    border-color 250ms ease,
+    box-shadow 250ms ease,
+    transform 250ms ease;
+}
+
+.home-brands__card:hover {
+  border-color: #D0D7C0;
+  box-shadow: 0 6px 20px rgba(40, 47, 54, 0.05);
+  transform: translateY(-2px);
+}
+
+/* LOGOS */
+
+.home-brands__card img {
+  display: block;
+
+  width: 100%;
+  max-width: 175px;
+  height: 53px;
+
+  object-fit: contain;
+  object-position: center;
+
+  filter: grayscale(100%);
+  opacity: 0.62;
+
+  transition:
+    filter 250ms ease,
+    opacity 250ms ease;
+}
+
+.home-brands__card:hover img {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+/* FALLBACK */
+
+.home-brands__fallback {
+  color: #868C8B;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  white-space: nowrap;
+}
+
+.home-brands__card:hover .home-brands__fallback {
+  color: var(--color-primary-hover);
+}
+
+/* ANIMATION */
+
+@keyframes home-brands-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+  .home-brands {
+    padding: 28px 0 36px;
+  }
+
+  .home-brands__heading {
+    margin-bottom: 24px;
+  }
+
+  .home-brands__group {
+    gap: 14px;
+    padding-right: 14px;
+  }
+
+  .home-brands__card {
+    width: 185px;
+    height: 76px;
+    padding: 14px 20px;
+  }
+
+  .home-brands__card img {
+    max-width: 145px;
+    height: 44px;
+  }
+
+  .home-brands__fallback {
+    font-size: 17px;
+  }
+
+  .home-brands__track {
+    animation-duration: 36s;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-brands__card {
+    width: 160px;
+    height: 70px;
+  }
+
+  .home-brands__card img {
+    max-width: 125px;
+    height: 40px;
+  }
+
+  .home-brands__heading p {
+    font-size: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-brands__track {
+    animation: none;
+  }
+
+  .home-brands__slider {
+    overflow-x: auto;
+  }
+}

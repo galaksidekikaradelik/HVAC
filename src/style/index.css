@@ -1,0 +1,24 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* BASE */
+@import './base/variables.css';
+@import './base/reset.css';
+@import './base/typography.css';
+@import './base/global.css';
+@import './base/layout.css';
+
+/* COMPONENTS */
+@import './components/header.css';
+@import './components/footer.css';
+@import './components/quote-request-modal.css';
+
+@import './pages/home-hero.css';
+@import './pages/home-rfq.css';
+@import './pages/home-catalog.css';
+@import './pages/home-brands.css';
+@import './pages/home-process.css';
+@import './pages/home-expertise.css';
+@import './pages/home-articles.css';
+@import './pages/home-cta.css';
+@import './pages/products.css';

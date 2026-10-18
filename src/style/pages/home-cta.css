@@ -1,0 +1,321 @@
+
+/* =========================================
+   HOME CTA
+========================================= */
+
+.home-cta {
+  position: relative;
+  isolation: isolate;
+  min-height: 350px;
+  margin: 0 clamp(12px, 1.5vw, 28px) 36px;
+
+  overflow: hidden;
+  border-radius: 22px;
+  background: #103B30;
+}
+
+/* BACKGROUND IMAGE */
+
+.home-cta__background {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+
+  background-position: right center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* GREEN OVERLAY */
+
+.home-cta__overlay {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      #10372d 0%,
+      #10372d 28%,
+      rgba(16, 55, 45, 0.97) 46%,
+      rgba(16, 55, 45, 0.88) 62%,
+      rgba(16, 55, 45, 0.32) 81%,
+      rgba(16, 55, 45, 0.08) 100%
+    );
+}
+
+/* CONTENT GRID */
+
+.home-cta__content {
+  position: relative;
+  z-index: 1;
+
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 1.05fr);
+
+  align-items: center;
+  gap: clamp(35px, 4vw, 85px);
+
+  max-width: 1560px;
+  min-height: 350px;
+  margin: 0 auto;
+  padding: clamp(32px, 3.5vw, 54px)
+           clamp(28px, 4.2vw, 70px);
+}
+
+/* =========================================
+   LEFT CONTENT
+========================================= */
+
+.home-cta__heading {
+  max-width: 540px;
+}
+
+.home-cta__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 17px;
+
+  color: #D5DF65;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.home-cta__eyebrow-line {
+  width: 68px;
+  height: 1px;
+  background: rgba(213, 223, 101, 0.8);
+}
+
+.home-cta__heading h2 {
+  margin: 0;
+
+  color: #FFFFFF;
+  font-size: clamp(32px, 3vw, 45px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.045em;
+}
+
+.home-cta__heading > p {
+  max-width: 515px;
+  margin-top: 15px;
+
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.home-cta__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 27px;
+}
+
+.home-cta__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+
+  min-height: 52px;
+  padding: 0 21px;
+
+  border: 1px solid transparent;
+  border-radius: 10px;
+
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition:
+    background 250ms ease,
+    border-color 250ms ease,
+    color 250ms ease,
+    transform 250ms ease;
+}
+
+.home-cta__button:hover {
+  transform: translateY(-3px);
+}
+
+.home-cta__button--primary {
+  color: #153E32;
+  background: #FFFFFF;
+}
+
+.home-cta__button--primary:hover {
+  color: #153E32;
+  background: #E7EBCF;
+}
+
+.home-cta__button--secondary {
+  color: #FFFFFF;
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.75);
+}
+
+.home-cta__button--secondary:hover {
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* =========================================
+   STEPS
+========================================= */
+
+.home-cta__steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  width: 100%;
+  max-width: 460px;
+}
+
+.home-cta__step {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+
+  min-width: 0;
+  padding: 0 23px;
+  border-right: 1px solid rgba(255, 255, 255, 0.32);
+}
+
+.home-cta__step:first-child {
+  padding-left: 0;
+}
+
+.home-cta__step:last-child {
+  border-right: none;
+}
+
+.home-cta__step svg {
+  color: #D4DD75;
+  flex-shrink: 0;
+}
+
+.home-cta__step p {
+  margin: 0;
+
+  color: #FFFFFF;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.home-cta__step p span {
+  display: block;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1100px) {
+  .home-cta__content {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 35px;
+  }
+
+  .home-cta__steps {
+    max-width: 510px;
+  }
+
+  .home-cta__overlay {
+    background: linear-gradient(
+      90deg,
+      #10372d 0%,
+      rgba(16, 55, 45, 0.98) 45%,
+      rgba(16, 55, 45, 0.65) 100%
+    );
+  }
+}
+
+@media (max-width: 768px) {
+  .home-cta {
+    margin: 0 12px 25px;
+    border-radius: 17px;
+  }
+
+  .home-cta__content {
+    padding: 36px 26px;
+  }
+
+  .home-cta__heading h2 {
+    font-size: clamp(30px, 5vw, 39px);
+  }
+
+  .home-cta__overlay {
+    background: rgba(16, 55, 45, 0.92);
+  }
+}
+
+@media (max-width: 480px) {
+  .home-cta__content {
+    padding: 30px 20px;
+  }
+
+  .home-cta__heading h2 {
+    font-size: 31px;
+  }
+
+  .home-cta__heading > p {
+    font-size: 13px;
+  }
+
+  .home-cta__actions {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .home-cta__button {
+    width: 100%;
+  }
+
+  .home-cta__steps {
+    gap: 0;
+  }
+
+  .home-cta__step {
+    padding: 0 9px;
+    gap: 10px;
+  }
+
+  .home-cta__step svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .home-cta__step p {
+    font-size: 11px;
+  }
+}
+
+/* ACCESSIBILITY */
+
+.home-cta a:focus-visible {
+  outline: 2px solid #D5DF65;
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-cta__button {
+    transition: none;
+  }
+}
