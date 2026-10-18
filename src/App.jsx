@@ -6,7 +6,8 @@ import PagePlaceholder from './components/ui/PagePlaceholder'
 
 import Home from './pages/Home'
 import Products from './pages/Products'
-
+import About from './pages/About'
+import Contact from './pages/Contact'
 const Placeholder = ({ title }) => (
   <PagePlaceholder title={title} />
 )
@@ -55,16 +56,10 @@ export default function App() {
           />
 
           {/* ABOUT */}
-          <Route
-            path="about"
-            element={<Placeholder title="Haqqımızda" />}
-          />
+          <Route path="about" element={<About />} />
 
           {/* CONTACT */}
-          <Route
-            path="contact"
-            element={<Placeholder title="Əlaqə" />}
-          />
+          <Route path="contact" element={<Contact />} />
 
           {/* 404 */}
           <Route

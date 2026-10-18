@@ -1,0 +1,140 @@
+.contact {
+  color: var(--color-text, #1a2433);
+}
+
+.contact__inner {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.contact__hero {
+  padding: 72px 0;
+  background: var(--color-primary, #0b5ed7);
+  color: #fff;
+}
+
+.contact__title {
+  margin: 0 0 16px;
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.contact__lead {
+  margin: 0;
+  font-size: 1.15rem;
+  opacity: 0.92;
+}
+
+.contact__body {
+  padding: 56px 0;
+}
+
+.contact__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.contact h2 {
+  margin: 0 0 20px;
+  font-size: 1.5rem;
+}
+
+.contact__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact__list li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--color-border, #dde3ec);
+}
+
+.contact__label {
+  font-size: 0.85rem;
+  color: var(--color-text-muted, #5b6778);
+}
+
+.contact__list a {
+  color: var(--color-primary, #0b5ed7);
+  text-decoration: none;
+}
+
+.contact__form {
+  display: flex;
+  flex-direction: column;
+  padding: 28px;
+  border: 1px solid var(--color-border, #dde3ec);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.contact__form label {
+  margin: 12px 0 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.contact__form input,
+.contact__form textarea {
+  padding: 10px 12px;
+  border: 1px solid var(--color-border, #dde3ec);
+  border-radius: 8px;
+  font: inherit;
+}
+
+.contact__form input:focus,
+.contact__form textarea:focus {
+  outline: 2px solid var(--color-primary, #0b5ed7);
+  outline-offset: 1px;
+}
+
+.contact__form textarea {
+  resize: vertical;
+}
+
+.contact__form button {
+  margin-top: 20px;
+  padding: 12px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--color-primary, #0b5ed7);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.contact__form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.contact__msg {
+  margin: 14px 0 0;
+  font-size: 0.95rem;
+}
+
+.contact__msg--ok {
+  color: #1a7f4b;
+}
+
+.contact__msg--err {
+  color: #c0392b;
+}
+
+@media (max-width: 768px) {
+  .contact__hero {
+    padding: 48px 0;
+  }
+
+  .contact__grid {
+    grid-template-columns: 1fr;
+  }
+}

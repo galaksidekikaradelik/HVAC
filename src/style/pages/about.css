@@ -1,0 +1,135 @@
+.about {
+  color: var(--color-text, #1a2433);
+}
+
+.about__inner {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.about__hero {
+  padding: 72px 0;
+  background: var(--color-primary, #0b5ed7);
+  color: #fff;
+}
+
+.about__title {
+  margin: 0 0 16px;
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.about__lead {
+  max-width: 640px;
+  margin: 0;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  opacity: 0.92;
+}
+
+.about__section {
+  padding: 56px 0;
+}
+
+.about__section--alt {
+  background: var(--color-bg-alt, #f3f6fa);
+}
+
+.about__section h2 {
+  margin: 0 0 20px;
+  font-size: 1.75rem;
+}
+
+.about__story p {
+  max-width: 720px;
+  margin: 0 0 14px;
+  line-height: 1.7;
+}
+
+.about__stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  text-align: center;
+}
+
+.about__stat-value {
+  display: block;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--color-primary, #0b5ed7);
+}
+
+.about__stat-label {
+  display: block;
+  margin-top: 4px;
+  color: var(--color-text-muted, #5b6778);
+}
+
+.about__values {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.about__card {
+  padding: 24px;
+  border: 1px solid var(--color-border, #dde3ec);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.about__card h3 {
+  margin: 0 0 8px;
+}
+
+.about__card p {
+  margin: 0;
+  line-height: 1.6;
+  color: var(--color-text-muted, #5b6778);
+}
+
+.about__cta {
+  padding: 56px 0;
+  background: var(--color-bg-alt, #f3f6fa);
+  text-align: center;
+}
+
+.about__cta h2 {
+  margin: 0 0 8px;
+}
+
+.about__cta p {
+  margin: 0 0 20px;
+  color: var(--color-text-muted, #5b6778);
+}
+
+.about__button {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 8px;
+  background: var(--color-primary, #0b5ed7);
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.about__button:hover {
+  opacity: 0.88;
+}
+
+@media (max-width: 768px) {
+  .about__hero {
+    padding: 48px 0;
+  }
+
+  .about__stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about__values {
+    grid-template-columns: 1fr;
+  }
+}
