@@ -11,6 +11,7 @@ import {
   ArrowRight,
 } from 'lucide-react'
 import CtaBanner from '../components/ui/CtaBanner'
+import PageHead from '../components/ui/PageHead'
 import '../style/pages/page-common.css'
 import '../style/pages/about.css'
 
@@ -66,17 +67,10 @@ export default function About() {
     <main className="sh-page about">
       {/* HERO */}
       <section className="sh-container about-hero">
-        <div>
-          <p className="sh-eyebrow">HAQQIMIZDA</p>
-          <h1>
-            HVAC sistemləri üçün <span>etibarlı</span> ehtiyat hissələri
-          </h1>
-          <p className="about-hero__lead">
-            SpareHVAC olaraq, Aeroclima təcrübəsi ilə müştərilərimizə HVAC
-            sistemləri üçün orijinal və uyğun alternativ ehtiyat hissələrini
-            sürətli, etibarlı və peşəkar dəstək ilə təqdim edirik.
-          </p>
-        </div>
+        <PageHead
+          title="Haqqımızda"
+          description="SpareHVAC olaraq, Aeroclima təcrübəsi ilə müştərilərimizə HVAC sistemləri üçün orijinal və uyğun alternativ ehtiyat hissələrini sürətli, etibarlı və peşəkar dəstək ilə təqdim edirik."
+        />
 
         <div className="about-hero__media">
           <img src="/images/about/hero.jpg" alt="SpareHVAC texniki mütəxəssisi" />

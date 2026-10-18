@@ -7,25 +7,6 @@
   padding-bottom: 56px;
 }
 
-.about-hero h1 {
-  margin: 0 0 20px;
-  font-size: clamp(2.1rem, 4.6vw, 3.4rem);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-}
-
-.about-hero h1 span {
-  color: var(--sh-olive);
-}
-
-.about-hero__lead {
-  max-width: 520px;
-  margin: 0;
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: var(--sh-muted);
-}
-
 .about-hero__media {
   position: relative;
 }

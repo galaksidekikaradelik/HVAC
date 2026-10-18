@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Phone, Mail, MapPin, ArrowRight, Wrench } from 'lucide-react'
 import CtaBanner from '../components/ui/CtaBanner'
+import PageHead from '../components/ui/PageHead'
 import '../style/pages/page-common.css'
 import '../style/pages/contact.css'
 
@@ -66,14 +67,12 @@ export default function Contact() {
   return (
     <main className="sh-page contact">
       {/* HERO */}
-      <section className="contact-hero">
+       <section className="contact-hero">
         <div className="sh-container">
-          <p className="sh-eyebrow">ƏLAQƏ</p>
-          <h1>Düzgün hissəni birlikdə tapaq.</h1>
-          <p className="contact-hero__lead">
-            Sualınız, qiymət sorğunuz və ya texniki dəstək ehtiyacınız varsa,
-            komandamız sizin üçün buradadır.
-          </p>
+          <PageHead
+            title="Əlaqə"
+            description="Sualınız, qiymət sorğunuz və ya texniki dəstək ehtiyacınız varsa, komandamız sizin üçün buradadır."
+          />
         </div>
       </section>
 

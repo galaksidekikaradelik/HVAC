@@ -1,0 +1,29 @@
+.page-head {
+  max-width: 640px;
+}
+
+.page-head__eyebrow {
+  display: block;
+  margin-bottom: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #6b7a1f;
+}
+
+.page-head h1 {
+  margin: 0 0 18px;
+  font-size: clamp(2.4rem, 5.5vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #262c33;
+}
+
+.page-head p {
+  max-width: 520px;
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: #6b7280;
+}
