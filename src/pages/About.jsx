@@ -1,91 +1,139 @@
 import { Link } from 'react-router-dom'
+import {
+  Settings,
+  ShieldCheck,
+  Handshake,
+  FileText,
+  Search,
+  ClipboardList,
+  Truck,
+  Headphones,
+  ArrowRight,
+} from 'lucide-react'
+import CtaBanner from '../components/ui/CtaBanner'
+import '../style/pages/page-common.css'
 import '../style/pages/about.css'
 
-const stats = [
-  { value: '10+', label: 'İllik təcrübə' },
-  { value: '5 000+', label: 'Məhsul çeşidi' },
-  { value: '30+', label: 'Tərəfdaş brend' },
-  { value: '1 000+', label: 'Məmnun müştəri' },
+const features = [
+  {
+    icon: Settings,
+    title: 'Texniki təcrübə',
+    text: 'Peşəkar komandamız HVAC sistemləri üçün düzgün hissənin seçimi və uyğunluğu üzrə dəstək göstərir.',
+    image: '/images/about/fan.png',
+    to: '/technical-center',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Orijinal və alternativ hissələr',
+    text: 'Dünyanın aparıcı istehsalçılarının orijinal (OEM) hissələrini və uyğun alternativləri təqdim edirik.',
+    image: '/images/about/compressor.png',
+    to: '/products',
+  },
+  {
+    icon: Handshake,
+    title: 'B2B satınalma dəstəyi',
+    text: 'Texniki yoxlamadan RFQ-ya və çatdırılmaya qədər bütün satınalma prosesini sadə, sürətli və etibarlı şəkildə idarə edirik.',
+    image: '/images/about/coil.png',
+    to: '/contact',
+  },
 ]
 
-const values = [
+const steps = [
   {
-    title: 'Keyfiyyət',
-    text: 'Yalnız orijinal və yoxlanılmış ehtiyat hissələri təklif edirik.',
+    icon: FileText,
+    title: 'Sorğu göndərin',
+    text: 'Ehtiyacınız olan hissələrin məlumatlarını bizə göndərin və ya RFQ formamızı doldurun.',
   },
   {
-    title: 'Sürətli çatdırılma',
-    text: 'Sifarişlər tez emal olunur və vaxtında təhvil verilir.',
+    icon: Search,
+    title: 'Texniki yoxlama',
+    text: 'Komandamız uyğunluğu təsdiqləyir və ən yaxşı variantları təklif edir.',
   },
   {
-    title: 'Texniki dəstək',
-    text: 'Düzgün hissəni seçməkdə mütəxəssislərimiz sizə kömək edir.',
+    icon: ClipboardList,
+    title: 'Qiymət təklifi',
+    text: 'Siz OEM və alternativ seçimlər üzrə ətraflı qiymət təklifi alırsınız.',
+  },
+  {
+    icon: Truck,
+    title: 'Çatdırılma',
+    text: 'Təsdiqdən sonra sürətli və etibarlı çatdırılmanı təmin edirik.',
   },
 ]
 
 export default function About() {
   return (
-    <main className="about">
-      <section className="about__hero">
-        <div className="about__inner">
-          <h1 className="about__title">Haqqımızda</h1>
-          <p className="about__lead">
-            SpareHVAC istilik, ventilyasiya və kondisioner sistemləri üçün
-            ehtiyat hissələrinin etibarlı tədarükçüsüdür.
+    <main className="sh-page about">
+      {/* HERO */}
+      <section className="sh-container about-hero">
+        <div>
+          <p className="sh-eyebrow">HAQQIMIZDA</p>
+          <h1>
+            HVAC sistemləri üçün <span>etibarlı</span> ehtiyat hissələri
+          </h1>
+          <p className="about-hero__lead">
+            SpareHVAC olaraq, Aeroclima təcrübəsi ilə müştərilərimizə HVAC
+            sistemləri üçün orijinal və uyğun alternativ ehtiyat hissələrini
+            sürətli, etibarlı və peşəkar dəstək ilə təqdim edirik.
           </p>
+        </div>
+
+        <div className="about-hero__media">
+          <img src="/images/about/hero.jpg" alt="SpareHVAC texniki mütəxəssisi" />
         </div>
       </section>
 
-      <section className="about__section">
-        <div className="about__inner about__story">
-          <h2>Biz kimik</h2>
-          <p>
-            Şirkətimiz HVAC sahəsində fəaliyyət göstərən mütəxəssislərə və
-            şirkətlərə lazım olan komponentləri bir ünvanda təqdim edir.
-            Məqsədimiz düzgün hissəni düzgün vaxtda tapmağınızı asanlaşdırmaqdır.
-          </p>
-          <p>
-            Məhsul kataloqumuz, tərəfdaş brendlərimiz və texniki bilik
-            mərkəzimiz sizə seçim etməkdə və quraşdırmada dəstək olmaq üçün
-            hazırlanıb.
-          </p>
-        </div>
+      {/* FEATURES */}
+      <section className="sh-container about-features">
+        {features.map(({ icon: Icon, title, text, image, to }) => (
+          <article className="about-feature" key={title}>
+            <span className="about-feature__icon">
+              <Icon size={22} />
+            </span>
+            <h3>{title}</h3>
+            <p>{text}</p>
+            <img src={image} alt="" loading="lazy" />
+            <Link
+              to={to}
+              className="about-feature__go"
+              aria-label={`${title} bölməsinə keç`}
+            >
+              <ArrowRight size={18} />
+            </Link>
+          </article>
+        ))}
       </section>
 
-      <section className="about__section about__section--alt">
-        <div className="about__inner about__stats">
-          {stats.map((item) => (
-            <div className="about__stat" key={item.label}>
-              <span className="about__stat-value">{item.value}</span>
-              <span className="about__stat-label">{item.label}</span>
-            </div>
+      {/* PROCESS */}
+      <section className="sh-container about-process">
+        <p className="sh-eyebrow">NECƏ İŞLƏYİR?</p>
+        <h2>Sadə proses, etibarlı nəticə.</h2>
+
+        <ol className="about-steps">
+          {steps.map(({ icon: Icon, title, text }, i) => (
+            <li className="about-step" key={title}>
+              <div className="about-step__top">
+                <span className="about-step__num">{i + 1}</span>
+                <Icon size={28} strokeWidth={1.5} />
+              </div>
+              <h3>{title}</h3>
+              <p>{text}</p>
+              {i < steps.length - 1 && (
+                <ArrowRight className="about-step__arrow" size={18} />
+              )}
+            </li>
           ))}
-        </div>
+        </ol>
       </section>
 
-      <section className="about__section">
-        <div className="about__inner">
-          <h2>Dəyərlərimiz</h2>
-          <div className="about__values">
-            {values.map((item) => (
-              <article className="about__card" key={item.title}>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="about__cta">
-        <div className="about__inner">
-          <h2>Sualınız var?</h2>
-          <p>Komandamız sizə uyğun həlli tapmağa hazırdır.</p>
-          <Link to="/contact" className="about__button">
-            Bizimlə əlaqə saxlayın
-          </Link>
-        </div>
-      </section>
+      {/* CTA */}
+      <div className="sh-container about-cta">
+        <CtaBanner
+          icon={Headphones}
+          title="Düzgün hissəni birlikdə tapaq."
+          text="Peşəkar komandamız sizə texniki məsləhət və uyğun qiymət təklifi ilə kömək etməyə hazırdır."
+        />
+      </div>
     </main>
   )
 }

@@ -1,0 +1,79 @@
+:root {
+  --sh-olive: #5a6633;
+  --sh-olive-dark: #475225;
+  --sh-olive-soft: #e5e9d3;
+  --sh-cream: #fbfaf5;
+  --sh-card: #fffffc;
+  --sh-border: #e7e5da;
+  --sh-ink: #111816;
+  --sh-muted: #5f6764;
+  --sh-radius: 20px;
+}
+
+.sh-page {
+  background: var(--sh-cream);
+  color: var(--sh-ink);
+}
+
+.sh-container {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.sh-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 20px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--sh-olive);
+}
+
+.sh-eyebrow::before {
+  content: '';
+  width: 36px;
+  height: 2px;
+  background: var(--sh-olive);
+}
+
+.sh-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 26px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--sh-olive);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sh-btn:hover {
+  background: var(--sh-olive-dark);
+}
+
+.sh-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.sh-icon-circle {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--sh-olive-soft);
+  color: var(--sh-olive);
+}

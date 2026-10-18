@@ -1,14 +1,44 @@
 import { useState } from 'react'
+import { Phone, Mail, MapPin, ArrowRight, Wrench } from 'lucide-react'
+import CtaBanner from '../components/ui/CtaBanner'
+import '../style/pages/page-common.css'
 import '../style/pages/contact.css'
 
 const contactInfo = [
-  { label: 'Ünvan', value: 'Bakı, Azərbaycan' },
-  { label: 'Telefon', value: '+994 XX XXX XX XX', href: 'tel:+994000000000' },
-  { label: 'E-poçt', value: 'info@sparehvac.az', href: 'mailto:info@sparehvac.az' },
-  { label: 'İş saatları', value: 'B.e. – Cümə: 09:00 – 18:00' },
+  {
+    icon: Phone,
+    value: '+994 50 201 83 93',
+    label: 'Zəng edin',
+    href: 'tel:+994502018393',
+  },
+  {
+    icon: Mail,
+    value: 'info@aeroclima.az',
+    label: 'E-poçt',
+    href: 'mailto:info@aeroclima.az',
+  },
+  {
+    icon: MapPin,
+    value: 'Bakı, Azərbaycan',
+    label: 'Ünvan',
+  },
 ]
 
-const initialForm = { name: '', phone: '', email: '', message: '' }
+const requestTypes = [
+  'Qiymət təklifi (RFQ)',
+  'Texniki dəstək',
+  'Məhsul uyğunluğu',
+  'Digər',
+]
+
+const initialForm = {
+  name: '',
+  company: '',
+  email: '',
+  phone: '',
+  type: '',
+  message: '',
+}
 
 export default function Contact() {
   const [form, setForm] = useState(initialForm)
@@ -24,7 +54,7 @@ export default function Contact() {
 
     try {
       // TODO: src/services altında göndərmə funksiyası yazıb burada çağır
-      // await sendContactMessage(form)
+      // await sendInquiry(form)
       await new Promise((resolve) => setTimeout(resolve, 600))
       setForm(initialForm)
       setStatus('success')
@@ -34,93 +64,192 @@ export default function Contact() {
   }
 
   return (
-    <main className="contact">
-      <section className="contact__hero">
-        <div className="contact__inner">
-          <h1 className="contact__title">Əlaqə</h1>
-          <p className="contact__lead">
-            Sualınız və ya sifarişiniz üçün bizimlə əlaqə saxlayın.
+    <main className="sh-page contact">
+      {/* HERO */}
+      <section className="contact-hero">
+        <div className="sh-container">
+          <p className="sh-eyebrow">ƏLAQƏ</p>
+          <h1>Düzgün hissəni birlikdə tapaq.</h1>
+          <p className="contact-hero__lead">
+            Sualınız, qiymət sorğunuz və ya texniki dəstək ehtiyacınız varsa,
+            komandamız sizin üçün buradadır.
           </p>
         </div>
       </section>
 
-      <section className="contact__body">
-        <div className="contact__inner contact__grid">
-          <div className="contact__info">
-            <h2>Əlaqə məlumatları</h2>
-            <ul className="contact__list">
-              {contactInfo.map((item) => (
-                <li key={item.label}>
-                  <span className="contact__label">{item.label}</span>
-                  {item.href ? (
-                    <a href={item.href}>{item.value}</a>
-                  ) : (
-                    <span>{item.value}</span>
-                  )}
+      <div className="sh-container contact-stack">
+        <div className="contact-grid">
+          {/* INFO */}
+          <aside className="contact-card">
+            <h2>Bizimlə əlaqə</h2>
+            <ul className="contact-info">
+              {contactInfo.map(({ icon: Icon, value, label, href }) => (
+                <li key={label}>
+                  <span className="sh-icon-circle">
+                    <Icon size={24} />
+                  </span>
+                  <div>
+                    {href ? (
+                      <a href={href}>
+                        <strong>{value}</strong>
+                      </a>
+                    ) : (
+                      <strong>{value}</strong>
+                    )}
+                    <small>{label}</small>
+                  </div>
                 </li>
               ))}
             </ul>
-          </div>
+          </aside>
 
-          <form className="contact__form" onSubmit={handleSubmit}>
-            <h2>Mesaj göndərin</h2>
+          {/* FORM */}
+          <section className="contact-card" id="sorgu-formu">
+            <h2>Sorğu göndərin</h2>
 
-            <label htmlFor="name">Ad, soyad</label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              value={form.name}
-              onChange={handleChange}
-              required
-            />
+            <form className="contact-form" onSubmit={handleSubmit}>
+              <div className="contact-field">
+                <label htmlFor="name">
+                  Ad və soyad <span>*</span>
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  autoComplete="name"
+                  value={form.name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-            <label htmlFor="phone">Telefon</label>
-            <input
-              id="phone"
-              name="phone"
-              type="tel"
-              value={form.phone}
-              onChange={handleChange}
-              required
-            />
+              <div className="contact-field">
+                <label htmlFor="company">
+                  Şirkət <span>*</span>
+                </label>
+                <input
+                  id="company"
+                  name="company"
+                  type="text"
+                  autoComplete="organization"
+                  value={form.company}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-            <label htmlFor="email">E-poçt</label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              value={form.email}
-              onChange={handleChange}
-            />
+              <div className="contact-field">
+                <label htmlFor="email">
+                  E-poçt <span>*</span>
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-            <label htmlFor="message">Mesaj</label>
-            <textarea
-              id="message"
-              name="message"
-              rows="5"
-              value={form.message}
-              onChange={handleChange}
-              required
-            />
+              <div className="contact-field">
+                <label htmlFor="phone">
+                  Telefon <span>*</span>
+                </label>
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  autoComplete="tel"
+                  value={form.phone}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-            <button type="submit" disabled={status === 'sending'}>
-              {status === 'sending' ? 'Göndərilir...' : 'Göndər'}
-            </button>
+              <div className="contact-field contact-field--full">
+                <label htmlFor="type">
+                  Sorğu növü <span>*</span>
+                </label>
+                <select
+                  id="type"
+                  name="type"
+                  value={form.type}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="" disabled>
+                    Seçim edin
+                  </option>
+                  {requestTypes.map((t) => (
+                    <option key={t} value={t}>
+                      {t}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-            {status === 'success' && (
-              <p className="contact__msg contact__msg--ok" role="status">
-                Mesajınız göndərildi. Tezliklə sizinlə əlaqə saxlayacağıq.
-              </p>
-            )}
-            {status === 'error' && (
-              <p className="contact__msg contact__msg--err" role="alert">
-                Xəta baş verdi. Zəhmət olmasa yenidən cəhd edin.
-              </p>
-            )}
-          </form>
+              <div className="contact-field contact-field--full">
+                <label htmlFor="message">
+                  Mesaj <span>*</span>
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Nə axtardığınızı qısa qeyd edin..."
+                  value={form.message}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <button
+                className="sh-btn"
+                type="submit"
+                disabled={status === 'sending'}
+              >
+                {status === 'sending' ? 'Göndərilir...' : 'Sorğunu göndər'}
+                <ArrowRight size={18} />
+              </button>
+
+              {status === 'success' && (
+                <p className="contact-status contact-status--ok" role="status">
+                  Sorğunuz göndərildi. Tezliklə sizinlə əlaqə saxlayacağıq.
+                </p>
+              )}
+              {status === 'error' && (
+                <p className="contact-status contact-status--err" role="alert">
+                  Xəta baş verdi. Zəhmət olmasa yenidən cəhd edin.
+                </p>
+              )}
+            </form>
+          </section>
         </div>
-      </section>
+
+        {/* MAP */}
+        <section className="contact-map">
+          <div className="contact-map__text">
+            <p>Ünvanımız</p>
+            <strong>Bakı, Azərbaycan</strong>
+          </div>
+          <iframe
+            title="Bakı xəritəsi"
+            src="https://www.google.com/maps?q=Baku,+Azerbaijan&z=11&output=embed"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </section>
+
+        {/* CTA */}
+        <CtaBanner
+          icon={Wrench}
+          title="Texniki dəstəyə ehtiyacınız var?"
+          text="Komandamız uyğunluq yoxlaması, OEM alternativləri və RFQ prosesi üzrə sizə kömək etməyə hazırdır."
+          label="Qiymət təklifi al"
+          to="#sorgu-formu"
+        />
+      </div>
     </main>
   )
 }
