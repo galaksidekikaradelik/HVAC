@@ -1,272 +1,695 @@
-
 /* =========================================
    SPAREHVAC — HOME PROCESS
+   FULL WIDTH / VISUAL RFQ / 3D IMAGES
 ========================================= */
 
 .home-process {
   position: relative;
+  width: 100%;
   overflow: hidden;
 
-  padding: 100px 0;
+  padding: 24px 0;
 
-  background: #0a4802;
-  color: #FFFFFF;
+  background: #F7F5F1;
+  font-family: 'Inter', sans-serif;
 }
 
-/* HEADER */
+/* =========================================
+   FULL WIDTH SHELL
+========================================= */
 
-.home-process__header {
+.home-process__shell {
+  position: relative;
+
   display: grid;
-  grid-template-columns: 1.4fr 0.6fr;
-  align-items: end;
-  gap: 64px;
+  grid-template-columns:
+    minmax(270px, 0.85fr)
+    minmax(0, 3.15fr);
 
-  margin-bottom: 78px;
+  align-items: center;
+
+  gap: clamp(25px, 3vw, 50px);
+
+  width: 100%;
+  max-width: none;
+  min-height: 405px;
+
+  margin: 0;
+
+  padding:
+    45px
+    clamp(28px, 3.5vw, 65px);
+
+  border-radius: 16px;
+
+  background:
+    radial-gradient(
+      ellipse at 75% 50%,
+      rgba(177, 183, 140, 0.13),
+      transparent 60%
+    ),
+    #F1F0EB;
+}
+
+/* =========================================
+   LEFT — CONTENT
+========================================= */
+
+.home-process__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  min-width: 0;
+  max-width: 365px;
 }
 
 .home-process__eyebrow {
+  color: #81903C;
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.home-process__accent-line {
   display: block;
-  margin-bottom: 20px;
 
-  color: #BBC987;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
+  width: 42px;
+  height: 3px;
+
+  margin: 15px 0 14px;
+
+  border-radius: 4px;
+  background: #89943A;
 }
 
-.home-process__heading h2 {
-  max-width: 660px;
+/* TITLE */
 
-  color: #FFFFFF;
-  font-size: clamp(34px, 4vw, 54px);
-  font-weight: 600;
-  line-height: 1.14;
-  letter-spacing: -0.045em;
+.home-process__content h2 {
+  margin: 0;
+
+  color: #282F36;
+
+  font-size: clamp(30px, 2.6vw, 43px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.05em;
 }
 
-.home-process__heading h2 span {
-  color: #BBC987;
-}
+/* DESCRIPTION */
 
 .home-process__intro {
-  max-width: 360px;
-  margin-bottom: 5px;
+  max-width: 345px;
 
-  color: #B9C1C5;
-  font-size: 15px;
-  line-height: 1.8;
+  margin: 16px 0 0;
+
+  color: #737C77;
+
+  font-size: 13px;
+  line-height: 1.7;
 }
 
-/* STEPS */
+/* CTA */
 
-.home-process__steps {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 26px;
-}
-
-.home-process__step {
-  min-width: 0;
-}
-
-.home-process__step-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  min-height: 48px;
-}
-
-.home-process__icon {
+.home-process__cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  width: 48px;
-  height: 48px;
+  gap: 18px;
 
-  color: #BBC987;
-}
+  min-height: 46px;
 
-.home-process__number {
-  color: #8D999F;
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-}
+  margin-top: 23px;
+  padding: 12px 21px;
 
-/* CONNECTION LINE */
+  border: none;
+  border-radius: 8px;
 
-.home-process__line {
-  position: relative;
-  width: 100%;
-  height: 1px;
-
-  margin: 25px 0 27px;
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.home-process__line span {
-  position: absolute;
-  left: 0;
-  top: 0;
-
-  width: 0;
-  height: 2px;
-  background: #BBC987;
-
-  transition: width 350ms ease;
-}
-
-.home-process__step:hover .home-process__line span {
-  width: 100%;
-}
-
-/* STEP CONTENT */
-
-.home-process__step h3 {
-  margin-bottom: 13px;
-
+  background: #89943A;
   color: #FFFFFF;
-  font-size: 19px;
+
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
   font-weight: 600;
-  line-height: 1.4;
-  letter-spacing: -0.025em;
-}
+  text-decoration: none;
 
-.home-process__step p {
-  max-width: 250px;
-
-  color: #AAB5BC;
-  font-size: 13px;
-  line-height: 1.75;
-}
-
-/* BOTTOM */
-
-.home-process__bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 24px;
-
-  margin-top: 68px;
-  padding-top: 26px;
-
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-.home-process__bottom p {
-  color: #AAB5BC;
-  font-size: 13px;
-}
-
-.home-process__link {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-
-  color: #BBC987;
-  font-size: 14px;
-  font-weight: 600;
-  white-space: nowrap;
+  cursor: pointer;
 
   transition:
-    gap 250ms ease,
-    color 250ms ease;
+    background 250ms ease,
+    transform 250ms ease,
+    box-shadow 250ms ease;
 }
 
-.home-process__link:hover {
-  gap: 18px;
+.home-process__cta:hover {
+  background: #737F2D;
   color: #FFFFFF;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 20px rgba(108, 123, 41, 0.15);
 }
 
-/* TABLET */
+.home-process__cta svg {
+  transition: transform 250ms ease;
+}
 
-@media (max-width: 1024px) {
-  .home-process {
-    padding: 80px 0;
+.home-process__cta:hover svg {
+  transform: translateX(4px);
+}
+
+.home-process__cta:focus-visible {
+  outline: 2px solid #89943A;
+  outline-offset: 4px;
+}
+
+/* =========================================
+   RIGHT — JOURNEY
+========================================= */
+
+.home-process__journey {
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+
+  padding: 10px 0;
+}
+
+/* =========================================
+   CONNECTOR LINE
+========================================= */
+
+.home-process__connector {
+  position: absolute;
+
+  top: 18%;
+  left: -1.5%;
+
+  z-index: 3;
+
+  width: 103%;
+  height: 68%;
+
+  overflow: visible;
+  pointer-events: none;
+}
+
+.home-process__connector-line {
+  fill: none;
+
+  stroke: #9AA84F;
+  stroke-width: 1.5;
+  stroke-dasharray: 4 6;
+
+  opacity: 0.8;
+}
+
+.home-process__connector circle {
+  fill: #F7F5F1;
+
+  stroke: #829039;
+  stroke-width: 4;
+}
+
+/* =========================================
+   FOUR CARD GRID
+========================================= */
+
+.home-process__steps {
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: clamp(14px, 1.6vw, 25px);
+
+  align-items: stretch;
+}
+
+/* CARD WRAPPER */
+
+.home-process__step {
+  position: relative;
+  min-width: 0;
+
+  transition: transform 350ms ease;
+}
+
+.home-process__step:hover {
+  transform: translateY(-7px);
+}
+
+/* =========================================
+   PAPER CARD
+========================================= */
+
+.home-process__paper {
+  position: relative;
+  isolation: isolate;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+  min-height: 275px;
+
+  padding: 17px 16px 20px;
+
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 15px;
+
+  background:
+    linear-gradient(
+      155deg,
+      rgba(255, 255, 255, 0.99),
+      rgba(255, 255, 255, 0.88)
+    );
+
+  box-shadow:
+    0 11px 28px rgba(51, 55, 44, 0.04);
+
+  transition:
+    box-shadow 350ms ease;
+}
+
+.home-process__step:hover .home-process__paper {
+  box-shadow:
+    0 17px 34px rgba(51, 55, 44, 0.08);
+}
+
+/* BACK PAPER EFFECT */
+
+.home-process__paper::before {
+  content: '';
+
+  position: absolute;
+  z-index: -1;
+
+  top: 7px;
+  left: 7px;
+  right: -3px;
+
+  height: 110px;
+
+  border-radius: 13px 17px 8px 8px;
+
+  background: #EEEEE8;
+
+  transform: rotate(2deg);
+
+  opacity: 0.72;
+}
+
+/* FOLDED CORNER */
+
+.home-process__paper-top {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+
+  width: 30%;
+  height: 24px;
+
+  background: #F0F1EA;
+
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 100%,
+    27% 100%
+  );
+
+  border-top-right-radius: 12px;
+
+  opacity: 0.65;
+}
+
+/* =========================================
+   STEP NUMBER
+========================================= */
+
+.home-process__number {
+  position: relative;
+  z-index: 1;
+
+  color: #D9DFC6;
+
+  font-size: clamp(31px, 2.5vw, 42px);
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: -0.065em;
+}
+
+/* =========================================
+   CUSTOM 3D PNG ILLUSTRATIONS
+========================================= */
+
+.home-process__illustration {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 120px;
+
+  margin: -13px 0 12px;
+
+  overflow: visible;
+}
+
+/* MAIN PNG IMAGE */
+
+.home-process__step-image {
+  display: block;
+
+  width: 120px;
+  height: 120px;
+
+  max-width: 100%;
+
+  object-fit: contain;
+  object-position: center;
+
+  user-select: none;
+  pointer-events: none;
+
+  filter:
+    drop-shadow(
+      0 7px 8px rgba(40, 47, 54, 0.08)
+    );
+
+  transition:
+    transform 350ms ease,
+    filter 350ms ease;
+}
+
+/* IMAGE HOVER */
+
+.home-process__step:hover .home-process__step-image {
+  transform: translateY(-5px) scale(1.06);
+
+  filter:
+    drop-shadow(
+      0 12px 12px rgba(40, 47, 54, 0.12)
+    );
+}
+
+/* =========================================
+   CARD CONTENT
+========================================= */
+
+.home-process__step-content {
+  position: relative;
+  z-index: 4;
+
+  margin-top: auto;
+}
+
+.home-process__step-content h3 {
+  margin: 0 0 8px;
+
+  color: #282F36;
+
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.home-process__step-content p {
+  margin: 0;
+
+  color: #777F7B;
+
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+/* SECTION HEIGHT */
+
+.home-process__shell {
+  min-height: 350px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+/* LARGER 3D ILLUSTRATIONS */
+
+.home-process__illustration {
+  height: 145px;
+  margin: -20px 0 5px;
+}
+
+.home-process__step-image {
+  width: 145px;
+  height: 145px;
+}
+
+/* CONNECTOR POSITION */
+
+.home-process__connector {
+  top: 23%;
+  height: 68%;
+}
+
+/* KEEP MOBILE COMPACT */
+
+@media (max-width: 680px) {
+  .home-process__shell {
+    padding-top: 35px;
+    padding-bottom: 35px;
   }
 
-  .home-process__header {
-    gap: 40px;
-    margin-bottom: 58px;
+  .home-process__illustration {
+    height: 110px;
+    margin: -10px 0 10px;
+  }
+
+  .home-process__step-image {
+    width: 110px;
+    height: 110px;
+  }
+}
+
+/* =========================================
+   LARGE DESKTOP
+========================================= */
+
+@media (min-width: 1440px) {
+  .home-process__illustration {
+    height: 135px;
+  }
+
+  .home-process__step-image {
+    width: 135px;
+    height: 135px;
+  }
+
+  .home-process__paper {
+    min-height: 285px;
+  }
+}
+
+/* =========================================
+   LAPTOP — UP TO 1280PX
+========================================= */
+
+@media (max-width: 1280px) {
+  .home-process__shell {
+    grid-template-columns:
+      minmax(240px, 0.8fr)
+      minmax(0, 3.2fr);
+
+    gap: 25px;
+
+    padding-inline: 30px;
   }
 
   .home-process__steps {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 44px 30px;
+    gap: 13px;
   }
 
-  .home-process__step p {
-    max-width: 340px;
+  .home-process__paper {
+    min-height: 270px;
+    padding: 15px 12px 18px;
+  }
+
+  .home-process__illustration {
+    height: 110px;
+  }
+
+  .home-process__step-image {
+    width: 110px;
+    height: 110px;
+  }
+
+  .home-process__step-content h3 {
+    font-size: 12px;
+  }
+
+  .home-process__step-content p {
+    font-size: 10px;
   }
 }
 
-/* MOBILE */
+/* =========================================
+   TABLET — UP TO 1050PX
+========================================= */
 
-@media (max-width: 768px) {
-  .home-process {
-    padding: 64px 0;
+@media (max-width: 1050px) {
+  .home-process__shell {
+    grid-template-columns: 1fr;
+    gap: 30px;
+
+    padding: 45px 30px;
   }
 
-  .home-process__header {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    margin-bottom: 44px;
+  .home-process__content {
+    max-width: 600px;
+  }
+
+  .home-process__content h2 {
+    font-size: 38px;
   }
 
   .home-process__intro {
     max-width: 500px;
   }
 
-  .home-process__heading h2 {
-    font-size: clamp(32px, 6vw, 42px);
+  .home-process__paper {
+    min-height: 275px;
   }
 
-  .home-process__bottom {
-    margin-top: 48px;
+  .home-process__illustration {
+    height: 115px;
+  }
+
+  .home-process__step-image {
+    width: 115px;
+    height: 115px;
+  }
+
+  .home-process__step-content p {
+    font-size: 11px;
   }
 }
 
-@media (max-width: 560px) {
+/* =========================================
+   SMALL TABLET — UP TO 680PX
+========================================= */
+
+@media (max-width: 680px) {
+  .home-process {
+    padding: 16px 0;
+  }
+
+  .home-process__shell {
+    gap: 25px;
+
+    padding: 35px 22px;
+
+    border-radius: 12px;
+  }
+
+  .home-process__steps {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 16px;
+  }
+
+  .home-process__connector {
+    display: none;
+  }
+
+  .home-process__paper {
+    min-height: 260px;
+    padding: 16px;
+  }
+
+  .home-process__illustration {
+    height: 105px;
+    margin: -10px 0 12px;
+  }
+
+  .home-process__step-image {
+    width: 105px;
+    height: 105px;
+  }
+
+  .home-process__step-content h3 {
+    font-size: 13px;
+  }
+}
+
+/* =========================================
+   MOBILE — UP TO 430PX
+========================================= */
+
+@media (max-width: 430px) {
+  .home-process__shell {
+    padding: 32px 19px;
+  }
+
+  .home-process__content h2 {
+    font-size: 33px;
+  }
+
+  .home-process__intro {
+    font-size: 12px;
+  }
+
   .home-process__steps {
     grid-template-columns: 1fr;
-    gap: 32px;
   }
 
-  .home-process__step-top {
-    min-height: 40px;
+  .home-process__journey {
+    padding: 0;
   }
 
-  .home-process__icon {
-    width: 40px;
-    height: 40px;
+  .home-process__paper {
+    min-height: 220px;
+    padding: 17px 20px;
   }
 
-  .home-process__line {
-    margin: 16px 0 18px;
+  .home-process__illustration {
+    height: 100px;
+    margin: -15px 0 10px;
   }
 
-  .home-process__step h3 {
-    font-size: 18px;
-    margin-bottom: 8px;
+  .home-process__step-image {
+    width: 100px;
+    height: 100px;
   }
 
-  .home-process__step p {
-    max-width: 100%;
+  .home-process__step-content h3 {
+    font-size: 13px;
   }
 
-  .home-process__bottom {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 18px;
+  .home-process__step-content p {
+    font-size: 11px;
   }
 }
 
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
 @media (prefers-reduced-motion: reduce) {
-  .home-process__line span,
-  .home-process__link {
+  .home-process__step,
+  .home-process__paper,
+  .home-process__cta,
+  .home-process__cta svg,
+  .home-process__step-image {
     transition: none;
   }
 }

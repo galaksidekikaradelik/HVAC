@@ -1,7 +1,7 @@
 
 import { Link } from 'react-router-dom'
 import { ArrowUpRight, Mail, MapPin } from 'lucide-react'
-import logo from '../../assets/images/logo.webp'
+import logo from '../../assets/images/sparehvac-dark.png'
 
 const FOOTER_LINKS = [
   { label: 'Ana səhifə', path: '/' },

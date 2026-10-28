@@ -8,6 +8,7 @@ import Home from './pages/Home'
 import Products from './pages/Products'
 import About from './pages/About'
 import Contact from './pages/Contact'
+import ProductCategory from './pages/ProductCategory'
 
 const Placeholder = ({ title }) => (
   <PagePlaceholder title={title} />
@@ -30,8 +31,8 @@ export default function App() {
           />
 
           <Route
-            path="products/category/:slug"
-            element={<Placeholder title="Məhsul kateqoriyası" />}
+            path="/products/category/:slug/*"
+            element={<ProductCategory />}
           />
 
           <Route

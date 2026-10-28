@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom'
 
 import {
@@ -74,8 +73,6 @@ export default function CategoryBentoGrid() {
             ].filter(Boolean).join(' ')}
             aria-label={`${category.title} kateqoriyasına bax`}
           >
-            {/* CARD TEXT */}
-
             <div className="category-bento__content">
               <span className="category-bento__number">
                 {String(category.id).padStart(2, '0')}
@@ -87,8 +84,7 @@ export default function CategoryBentoGrid() {
 
               {isFeatured && (
                 <p className="category-bento__description">
-                  Hermetik, scroll, rotary və digər
-                  kompressorlar
+                  {category.description}
                 </p>
               )}
 
@@ -102,8 +98,6 @@ export default function CategoryBentoGrid() {
                 />
               </span>
             </div>
-
-            {/* PRODUCT VISUAL */}
 
             <div className="category-bento__visual">
               {imageSrc ? (
