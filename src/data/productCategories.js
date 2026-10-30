@@ -4,7 +4,7 @@ export const PRODUCT_CATEGORIES = [
     title: 'Kompressorlar',
     slug: 'kompressorlar',
     icon: 'compressor',
-    image: 'compressors.webp',
+    image: 'compressors.png',
     description:
       'HVAC və soyutma sistemləri üçün kompressorlar.',
     subcategories: [],
@@ -14,7 +14,7 @@ export const PRODUCT_CATEGORIES = [
     title: 'Soyuducu kontur komponentləri',
     slug: 'soyuducu-kontur-komponentleri',
     icon: 'coil',
-    image: 'refrigeration-parts.webp',
+    image: 'refrigeration-parts.png',
     description:
       'Soyuducu dövrənin işləməsini təmin edən komponentlər.',
     subcategories: [],
@@ -24,7 +24,7 @@ export const PRODUCT_CATEGORIES = [
     title: 'Elektron kartlar və elektrik hissələri',
     slug: 'elektron-kartlar-elektrik-hisseleri',
     icon: 'board',
-    image: 'control-boards.webp',
+    image: 'control-boards.png',
     description:
       'İdarəetmə kartları və elektrik komponentləri.',
     subcategories: [],
@@ -34,7 +34,7 @@ export const PRODUCT_CATEGORIES = [
     title: 'Fanlar və mühərriklər',
     slug: 'fanlar-ve-muherrikler',
     icon: 'fan',
-    image: 'fans-motors.webp',
+    image: 'fans-motors.png',
     description:
       'Havalandırma və soyutma sistemləri üçün fan və mühərriklər.',
     subcategories: [],
@@ -44,7 +44,7 @@ export const PRODUCT_CATEGORIES = [
     title: 'Sensorlar və avtomatika',
     slug: 'sensorlar-ve-avtomatika',
     icon: 'sensor',
-    image: 'sensors.webp',
+    image: 'sensors.png',
     description:
       'Ölçmə, nəzarət və avtomatik idarəetmə komponentləri.',
     subcategories: [],
@@ -54,7 +54,7 @@ export const PRODUCT_CATEGORIES = [
     title: 'İstilik mübadilə aparatları',
     slug: 'istilik-mubadile-aparatlari',
     icon: 'coil',
-    image: 'heat-exchangers.webp',
+    image: 'heat-exchangers.png',
     description:
       'İstilik ötürülməsi üçün istifadə olunan avadanlıqlar.',
     subcategories: [],
@@ -64,7 +64,7 @@ export const PRODUCT_CATEGORIES = [
     title: 'Filtrlər və hava komponentləri',
     slug: 'filtrler-ve-hava-komponentleri',
     icon: 'filter',
-    image: 'air-filters.webp',
+    image: 'air-filters.png',
     description:
       'Hava filtrasiyası və hava sistemləri üçün komponentlər.',
     subcategories: [],
@@ -74,7 +74,7 @@ export const PRODUCT_CATEGORIES = [
     title: 'Nasoslar və hidronika',
     slug: 'nasoslar-ve-hidronika',
     icon: 'pipe',
-    image: 'pumps-hydronics.webp',
+    image: 'pumps-hydronics.png',
     description:
       'Su dövriyyəsi və hidronik sistem komponentləri.',
     subcategories: [],
@@ -84,7 +84,7 @@ export const PRODUCT_CATEGORIES = [
     title: 'Qazan və isitmə ehtiyat hissələri',
     slug: 'qazan-ve-isitme-ehtiyat-hisseleri',
     icon: 'parts',
-    image: 'pump-boiler-parts.webp',
+    image: 'pump-boiler-parts.png',
     description:
       'Qazan və isitmə sistemlərinin ehtiyat hissələri.',
     subcategories: [],
@@ -94,7 +94,7 @@ export const PRODUCT_CATEGORIES = [
     title: 'Kondensat və drenaj sistemləri',
     slug: 'kondensat-ve-drenaj-sistemleri',
     icon: 'pipe',
-    image: 'condensate-drainage.webp',
+    image: 'condensate-drainage.png',
     description:
       'Kondensatın toplanması və kənarlaşdırılması üçün komponentlər.',
     subcategories: [],
@@ -104,7 +104,7 @@ export const PRODUCT_CATEGORIES = [
     title: 'Korpus və konstruktiv OEM hissələr',
     slug: 'korpus-ve-konstruktiv-oem-hisseler',
     icon: 'parts',
-    image: 'oem-body-parts.webp',
+    image: 'oem-body-parts.png',
     description:
       'Avadanlıqların korpus və konstruktiv ehtiyat hissələri.',
     subcategories: [],
@@ -114,7 +114,7 @@ export const PRODUCT_CATEGORIES = [
     title: 'Servis və ölçü avadanlıqları',
     slug: 'servis-ve-olcu-avadanliqlari',
     icon: 'gauge',
-    image: 'service-tools.webp',
+    image: 'service-tools.png',
     description:
       'Texniki servis, diaqnostika və ölçmə avadanlıqları.',
     subcategories: [],

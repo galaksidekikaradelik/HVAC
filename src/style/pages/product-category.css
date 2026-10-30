@@ -1542,6 +1542,22 @@
   color: #FFFFFF;
 }
 
+/* CATEGORY TECHNICAL NOTE */
+
+.catalog-child-section__note {
+  margin: 16px 0 0;
+  padding: 13px 16px;
+
+  border: 1px solid #E0E5D5;
+  border-radius: 9px;
+
+  background: #F7F8F2;
+  color: #697568;
+
+  font-size: 11px;
+  line-height: 1.7;
+}
+
 /* =========================================
    RESPONSIVE
 ========================================= */

@@ -1,5 +1,9 @@
 import { useMemo } from 'react'
-import { Link, useParams, useSearchParams } from 'react-router-dom'
+import {
+  Link,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom'
 
 import {
   ArrowLeft,
@@ -21,14 +25,16 @@ import {
 } from '../data/productCategories'
 
 import {
-  COMPRESSOR_GROUPS,
-  getCompressorGroup,
-  getCompressorSubcategory,
-} from '../data/categoryTrees/compressors'
+  getCategoryGroups,
+  getCategoryGroup,
+  getCategoryChild,
+} from '../data/categoryTrees'
 
 import { CATALOG_PRODUCTS } from '../data/catalogProducts'
 
-const COMPRESSOR_SLUG = 'kompressorlar'
+/* =========================================
+   CATEGORY IMAGES
+========================================= */
 
 const categoryImages = import.meta.glob(
   '../assets/images/categories/*.{png,webp,jpg,jpeg}',
@@ -58,7 +64,12 @@ function uniqueValues(products, field) {
     ...new Set(
       products
         .map((product) => product[field])
-        .filter((value) => value !== null && value !== undefined && value !== '')
+        .filter(
+          (value) =>
+            value !== null &&
+            value !== undefined &&
+            value !== ''
+        )
         .map(String)
     ),
   ].sort((a, b) => a.localeCompare(b, 'az'))
@@ -70,11 +81,18 @@ function normalize(value) {
     .toLocaleLowerCase('az')
 }
 
-function getGroupUrl(categorySlug, groupSlug = '', childSlug = '') {
+function getGroupUrl(
+  categorySlug,
+  groupSlug = '',
+  childSlug = ''
+) {
   const base = `/products/category/${categorySlug}`
 
   if (!groupSlug) return base
-  if (!childSlug) return `${base}/${groupSlug}`
+
+  if (!childSlug) {
+    return `${base}/${groupSlug}`
+  }
 
   return `${base}/${groupSlug}/${childSlug}`
 }
@@ -87,23 +105,33 @@ function CategorySidebar({ activeSlug }) {
   return (
     <aside className="catalog-sidebar">
       <div className="catalog-sidebar__heading">
-        <FolderOpen size={19} />
+        <FolderOpen
+          size={19}
+          strokeWidth={1.7}
+        />
+
         <h2>Məhsul kateqoriyaları</h2>
       </div>
 
       <nav aria-label="Əsas məhsul kateqoriyaları">
         <ul className="catalog-sidebar__list">
           {PRODUCT_CATEGORIES.map((category) => {
-            const active = category.slug === activeSlug
+            const isActive =
+              category.slug === activeSlug
 
             return (
               <li key={category.id}>
                 <Link
                   to={getGroupUrl(category.slug)}
-                  className={`catalog-sidebar__item ${
-                    active ? 'is-active' : ''
-                  }`}
-                  aria-current={active ? 'page' : undefined}
+                  className={[
+                    'catalog-sidebar__item',
+                    isActive ? 'is-active' : '',
+                  ]
+                    .filter(Boolean)
+                    .join(' ')}
+                  aria-current={
+                    isActive ? 'page' : undefined
+                  }
                 >
                   <span className="catalog-sidebar__number">
                     {String(category.id).padStart(2, '0')}
@@ -113,7 +141,11 @@ function CategorySidebar({ activeSlug }) {
                     {category.title}
                   </span>
 
-                  <ChevronRight size={15} />
+                  <ChevronRight
+                    size={15}
+                    strokeWidth={1.7}
+                    aria-hidden="true"
+                  />
                 </Link>
               </li>
             )
@@ -128,21 +160,33 @@ function CategorySidebar({ activeSlug }) {
    BREADCRUMB
 ========================================= */
 
-function CatalogBreadcrumb({ category, group, child }) {
+function CatalogBreadcrumb({
+  category,
+  group,
+  child,
+}) {
   return (
     <nav
       className="catalog-breadcrumb"
       aria-label="Səhifə yolu"
     >
-      <Link to="/">Ana səhifə</Link>
+      <Link to="/">
+        Ana səhifə
+      </Link>
+
       <ChevronRight size={13} />
 
-      <Link to="/products">Məhsullar</Link>
+      <Link to="/products">
+        Məhsullar
+      </Link>
+
       <ChevronRight size={13} />
 
       {group ? (
         <>
-          <Link to={getGroupUrl(category.slug)}>
+          <Link
+            to={getGroupUrl(category.slug)}
+          >
             {category.title}
           </Link>
 
@@ -151,28 +195,37 @@ function CatalogBreadcrumb({ category, group, child }) {
           {child ? (
             <>
               <Link
-                to={getGroupUrl(category.slug, group.slug)}
+                to={getGroupUrl(
+                  category.slug,
+                  group.slug
+                )}
               >
                 {group.title}
               </Link>
 
               <ChevronRight size={13} />
 
-              <span aria-current="page">{child.title}</span>
+              <span aria-current="page">
+                {child.title}
+              </span>
             </>
           ) : (
-            <span aria-current="page">{group.title}</span>
+            <span aria-current="page">
+              {group.title}
+            </span>
           )}
         </>
       ) : (
-        <span aria-current="page">{category.title}</span>
+        <span aria-current="page">
+          {category.title}
+        </span>
       )}
     </nav>
   )
 }
 
 /* =========================================
-   HERO — IMAGE + TITLE SIDE BY SIDE
+   CATEGORY HERO
 ========================================= */
 
 function CategoryHero({ category }) {
@@ -182,9 +235,17 @@ function CategoryHero({ category }) {
     <div className="catalog-hero catalog-hero--horizontal">
       <div className="catalog-hero__visual">
         {image ? (
-          <img src={image} alt="" draggable="false" />
+          <img
+            src={image}
+            alt=""
+            draggable="false"
+          />
         ) : (
-          <Package size={80} strokeWidth={1.1} />
+          <Package
+            size={80}
+            strokeWidth={1.1}
+            aria-hidden="true"
+          />
         )}
       </div>
 
@@ -199,7 +260,10 @@ function CategoryHero({ category }) {
 
         <div className="catalog-hero__meta">
           <CheckCircle2 size={16} />
-          Texniki uyğunluq üzrə dəstək
+
+          <span>
+            Texniki uyğunluq üzrə dəstək
+          </span>
         </div>
       </div>
     </div>
@@ -210,13 +274,19 @@ function CategoryHero({ category }) {
    LEVEL 2 — GROUP SELECTOR
 ========================================= */
 
-function GroupSelector({ category, groups, activeGroup }) {
+function GroupSelector({
+  category,
+  groups,
+  activeGroup,
+}) {
   return (
     <section className="catalog-select-section">
       <div className="catalog-select-section__heading">
         <div>
           <span className="catalog-select-section__eyebrow">
-            01 / MƏHSUL QRUPLARI
+            {String(category.id).padStart(2, '0')}
+            {' / '}
+            MƏHSUL QRUPLARI
           </span>
 
           <h2>Alt kateqoriyalar</h2>
@@ -228,15 +298,25 @@ function GroupSelector({ category, groups, activeGroup }) {
       </div>
 
       <div className="catalog-group-selector">
+        {/* ALL GROUPS */}
+
         <Link
           to={getGroupUrl(category.slug)}
-          className={`catalog-group-choice ${
-            !activeGroup ? 'is-active' : ''
-          }`}
-          aria-current={!activeGroup ? 'page' : undefined}
+          className={[
+            'catalog-group-choice',
+            !activeGroup ? 'is-active' : '',
+          ]
+            .filter(Boolean)
+            .join(' ')}
+          aria-current={
+            !activeGroup ? 'page' : undefined
+          }
         >
           <span className="catalog-group-choice__symbol">
-            <Package size={25} strokeWidth={1.5} />
+            <Package
+              size={25}
+              strokeWidth={1.5}
+            />
           </span>
 
           <span className="catalog-group-choice__title">
@@ -244,43 +324,61 @@ function GroupSelector({ category, groups, activeGroup }) {
           </span>
         </Link>
 
-        {groups.map((group) => (
-          <Link
-            key={group.id}
-            to={getGroupUrl(category.slug, group.slug)}
-            className={`catalog-group-choice ${
-              activeGroup?.slug === group.slug
-                ? 'is-active'
-                : ''
-            }`}
-            aria-current={
-              activeGroup?.slug === group.slug
-                ? 'page'
-                : undefined
-            }
-          >
-            <span className="catalog-group-choice__number">
-              {group.id}
-            </span>
+        {/* CATEGORY GROUPS */}
 
-            <span className="catalog-group-choice__title">
-              {group.title}
-            </span>
+        {groups.map((group) => {
+          const isActive =
+            activeGroup?.slug === group.slug
 
-            <ArrowRight size={15} />
-          </Link>
-        ))}
+          return (
+            <Link
+              key={group.id}
+              to={getGroupUrl(
+                category.slug,
+                group.slug
+              )}
+              className={[
+                'catalog-group-choice',
+                isActive ? 'is-active' : '',
+              ]
+                .filter(Boolean)
+                .join(' ')}
+              aria-current={
+                isActive ? 'page' : undefined
+              }
+            >
+              <span className="catalog-group-choice__number">
+                {group.id}
+              </span>
+
+              <span className="catalog-group-choice__title">
+                {group.title}
+              </span>
+
+              <ArrowRight
+                size={15}
+                aria-hidden="true"
+              />
+            </Link>
+          )
+        })}
       </div>
     </section>
   )
 }
 
 /* =========================================
-   LEVEL 3 — CHILD CATEGORY CHIPS
+   LEVEL 3 — SUBCATEGORY SELECTOR
 ========================================= */
 
-function ChildSelector({ category, group, activeChild }) {
-  if (!group?.children?.length) return null
+function ChildSelector({
+  category,
+  group,
+  activeChild,
+}) {
+  if (!group?.children?.length) {
+    return null
+  }
 
   return (
     <section className="catalog-child-section">
@@ -293,39 +391,59 @@ function ChildSelector({ category, group, activeChild }) {
       </div>
 
       <div className="catalog-child-options">
+
         <Link
-          to={getGroupUrl(category.slug, group.slug)}
-          className={`catalog-child-option ${
-            !activeChild ? 'is-active' : ''
-          }`}
-          aria-current={!activeChild ? 'page' : undefined}
+          to={getGroupUrl(
+            category.slug,
+            group.slug
+          )}
+          className={[
+            'catalog-child-option',
+            !activeChild ? 'is-active' : '',
+          ]
+            .filter(Boolean)
+            .join(' ')}
+          aria-current={
+            !activeChild ? 'page' : undefined
+          }
         >
           Hamısı
         </Link>
 
-        {group.children.map((child) => (
-          <Link
-            key={child.id}
-            to={getGroupUrl(
-              category.slug,
-              group.slug,
-              child.slug
-            )}
-            className={`catalog-child-option ${
-              activeChild?.slug === child.slug
-                ? 'is-active'
-                : ''
-            }`}
-            aria-current={
-              activeChild?.slug === child.slug
-                ? 'page'
-                : undefined
-            }
-          >
-            {child.title}
-          </Link>
-        ))}
+        {/* INDIVIDUAL SUBCATEGORIES */}
+
+        {group.children.map((child) => {
+          const isActive =
+            activeChild?.slug === child.slug
+
+          return (
+            <Link
+              key={child.id}
+              to={getGroupUrl(
+                category.slug,
+                group.slug,
+                child.slug
+              )}
+              className={[
+                'catalog-child-option',
+                isActive ? 'is-active' : '',
+              ]
+                .filter(Boolean)
+                .join(' ')}
+              aria-current={
+                isActive ? 'page' : undefined
+              }
+            >
+              {child.title}
+            </Link>
+          )
+        })}
       </div>
+      {group.note && (
+      <p className="catalog-child-section__note">
+        {group.note}
+      </p>
+    )}
     </section>
   )
 }
@@ -348,7 +466,11 @@ function CatalogFilters({
   resultCount,
 }) {
   const hasFilters = Boolean(
-    search || brand || refrigerant || voltage || sort !== 'default'
+    search ||
+    brand ||
+    refrigerant ||
+    voltage ||
+    sort !== 'default'
   )
 
   return (
@@ -356,6 +478,7 @@ function CatalogFilters({
       <div className="catalog-filters__heading">
         <div>
           <SlidersHorizontal size={19} />
+
           <h2>Filtrlər</h2>
         </div>
 
@@ -366,11 +489,14 @@ function CatalogFilters({
           disabled={!hasFilters}
         >
           <RotateCcw size={14} />
+
           Filtrləri təmizlə
         </button>
       </div>
 
       <div className="catalog-filters__grid">
+        {/* SEARCH */}
+
         <label className="catalog-filter catalog-filter--search">
           <span>Axtarış</span>
 
@@ -381,12 +507,17 @@ function CatalogFilters({
               type="search"
               value={search}
               onChange={(event) =>
-                onChange('q', event.target.value)
+                onChange(
+                  'q',
+                  event.target.value
+                )
               }
               placeholder="Məhsul adı, model və ya OEM kodu"
             />
           </div>
         </label>
+
+        {/* BRAND */}
 
         <label className="catalog-filter">
           <span>Brend</span>
@@ -394,19 +525,29 @@ function CatalogFilters({
           <select
             value={brand}
             onChange={(event) =>
-              onChange('brand', event.target.value)
+              onChange(
+                'brand',
+                event.target.value
+              )
             }
             disabled={!brands.length}
           >
-            <option value="">Bütün brendlər</option>
+            <option value="">
+              Bütün brendlər
+            </option>
 
             {brands.map((item) => (
-              <option key={item} value={item}>
+              <option
+                key={item}
+                value={item}
+              >
                 {item}
               </option>
             ))}
           </select>
         </label>
+
+        {/* REFRIGERANT */}
 
         <label className="catalog-filter">
           <span>Soyuducu qaz</span>
@@ -414,19 +555,29 @@ function CatalogFilters({
           <select
             value={refrigerant}
             onChange={(event) =>
-              onChange('refrigerant', event.target.value)
+              onChange(
+                'refrigerant',
+                event.target.value
+              )
             }
             disabled={!refrigerants.length}
           >
-            <option value="">Hamısı</option>
+            <option value="">
+              Hamısı
+            </option>
 
             {refrigerants.map((item) => (
-              <option key={item} value={item}>
+              <option
+                key={item}
+                value={item}
+              >
                 {item}
               </option>
             ))}
           </select>
         </label>
+
+        {/* VOLTAGE */}
 
         <label className="catalog-filter">
           <span>Gərginlik</span>
@@ -434,19 +585,29 @@ function CatalogFilters({
           <select
             value={voltage}
             onChange={(event) =>
-              onChange('voltage', event.target.value)
+              onChange(
+                'voltage',
+                event.target.value
+              )
             }
             disabled={!voltages.length}
           >
-            <option value="">Hamısı</option>
+            <option value="">
+              Hamısı
+            </option>
 
             {voltages.map((item) => (
-              <option key={item} value={item}>
+              <option
+                key={item}
+                value={item}
+              >
                 {item}
               </option>
             ))}
           </select>
         </label>
+
+        {/* SORT */}
 
         <label className="catalog-filter">
           <span>Sıralama</span>
@@ -454,20 +615,38 @@ function CatalogFilters({
           <select
             value={sort}
             onChange={(event) =>
-              onChange('sort', event.target.value)
+              onChange(
+                'sort',
+                event.target.value
+              )
             }
           >
-            <option value="default">Standart</option>
-            <option value="az">Ad: A–Z</option>
-            <option value="za">Ad: Z–A</option>
-            <option value="brand">Brend: A–Z</option>
+            <option value="default">
+              Standart
+            </option>
+
+            <option value="az">
+              Ad: A–Z
+            </option>
+
+            <option value="za">
+              Ad: Z–A
+            </option>
+
+            <option value="brand">
+              Brend: A–Z
+            </option>
           </select>
         </label>
       </div>
 
       <div className="catalog-filters__footer">
         <span>
-          <strong>{resultCount}</strong> məhsul tapıldı
+          <strong>
+            {resultCount}
+          </strong>
+          {' '}
+          məhsul tapıldı
         </span>
       </div>
     </section>
@@ -478,12 +657,18 @@ function CatalogFilters({
    PRODUCT RESULTS
 ========================================= */
 
-function ProductResults({ products, hasAnyProducts }) {
+function ProductResults({
+  products,
+  hasAnyProducts,
+}) {
   if (!products.length) {
     return (
       <div className="catalog-empty">
         <div className="catalog-empty__icon">
-          <PackageSearch size={38} strokeWidth={1.3} />
+          <PackageSearch
+            size={38}
+            strokeWidth={1.3}
+          />
         </div>
 
         <h3>
@@ -498,8 +683,12 @@ function ProductResults({ products, hasAnyProducts }) {
             : 'Məhsullar kataloqa əlavə olunur. Axtardığınız hissənin modelini və ya OEM kodunu göndərərək qiymət təklifi istəyə bilərsiniz.'}
         </p>
 
-        <Link to="/contact" className="catalog-empty__button">
+        <Link
+          to="/contact"
+          className="catalog-empty__button"
+        >
           Sorğu göndərin
+
           <ArrowUpRight size={17} />
         </Link>
       </div>
@@ -510,8 +699,8 @@ function ProductResults({ products, hasAnyProducts }) {
     <div className="catalog-products-grid">
       {products.map((product) => (
         <article
-          className="catalog-product-card"
           key={product.id}
+          className="catalog-product-card"
         >
           <div className="catalog-product-card__image">
             {product.image ? (
@@ -521,7 +710,10 @@ function ProductResults({ products, hasAnyProducts }) {
                 loading="lazy"
               />
             ) : (
-              <Package size={47} strokeWidth={1.2} />
+              <Package
+                size={47}
+                strokeWidth={1.2}
+              />
             )}
           </div>
 
@@ -532,14 +724,20 @@ function ProductResults({ products, hasAnyProducts }) {
               </span>
             )}
 
-            <h3>{product.title}</h3>
+            <h3>
+              {product.title}
+            </h3>
 
             {product.model && (
-              <p>Model: {product.model}</p>
+              <p>
+                Model: {product.model}
+              </p>
             )}
 
             {product.oemCode && (
-              <p>OEM: {product.oemCode}</p>
+              <p>
+                OEM: {product.oemCode}
+              </p>
             )}
 
             <Link
@@ -547,6 +745,7 @@ function ProductResults({ products, hasAnyProducts }) {
               className="catalog-product-card__button"
             >
               Qiymət soruş
+
               <ArrowUpRight size={16} />
             </Link>
           </div>
@@ -561,56 +760,111 @@ function ProductResults({ products, hasAnyProducts }) {
 ========================================= */
 
 export default function ProductCategory() {
-  const { slug, '*': nestedPath = '' } = useParams()
-  const [searchParams, setSearchParams] = useSearchParams()
+  const {
+    slug,
+    '*': nestedPath = '',
+  } = useParams()
+
+  const [
+    searchParams,
+    setSearchParams,
+  ] = useSearchParams()
+
+  /* =======================================
+     CATEGORY
+  ======================================= */
 
   const category = getProductCategory(slug)
 
-  const segments = nestedPath.split('/').filter(Boolean)
-  const [groupSlug, childSlug] = segments
+  const segments = nestedPath
+    .split('/')
+    .filter(Boolean)
 
-  const isCompressors = slug === COMPRESSOR_SLUG
+  const [
+    groupSlug,
+    childSlug,
+  ] = segments
 
-  const groups = isCompressors
-    ? COMPRESSOR_GROUPS
-    : []
+  /* =======================================
+     DYNAMIC CATEGORY TREE
+  ======================================= */
 
-  const group =
-    isCompressors && groupSlug
-      ? getCompressorGroup(groupSlug)
-      : null
+  const groups = getCategoryGroups(slug)
 
-  const child =
-    group && childSlug
-      ? getCompressorSubcategory(groupSlug, childSlug)
-      : null
+  const group = groupSlug
+    ? getCategoryGroup(
+        slug,
+        groupSlug
+      )
+    : null
+
+  const child = group && childSlug
+    ? getCategoryChild(
+        slug,
+        groupSlug,
+        childSlug
+      )
+    : null
+
+  /* =======================================
+     PATH VALIDATION
+  ======================================= */
 
   const invalidPath =
     segments.length > 2 ||
-    (!isCompressors && segments.length > 0) ||
-    (isCompressors && groupSlug && !group) ||
-    (isCompressors && childSlug && !child)
+    (Boolean(groupSlug) && !group) ||
+    (Boolean(childSlug) && !child)
+
+  /* =======================================
+     FILTER STATE
+  ======================================= */
 
   const search = searchParams.get('q') ?? ''
-  const brand = searchParams.get('brand') ?? ''
-  const refrigerant = searchParams.get('refrigerant') ?? ''
-  const voltage = searchParams.get('voltage') ?? ''
-  const sort = searchParams.get('sort') ?? 'default'
 
-  /* Product scope:
-     Category -> Group -> Child
-     No selection means ALL within current scope.
-  */
+  const brand =
+    searchParams.get('brand') ?? ''
+
+  const refrigerant =
+    searchParams.get('refrigerant') ?? ''
+
+  const voltage =
+    searchParams.get('voltage') ?? ''
+
+  const sort =
+    searchParams.get('sort') ?? 'default'
+
+  /* =======================================
+     CATEGORY PRODUCT SCOPE
+
+     No selected group:
+       All category products.
+
+     Selected group:
+       All products in that group.
+
+     Selected child:
+       Only matching child products.
+  ======================================= */
 
   const scopedProducts = useMemo(() => {
     return CATALOG_PRODUCTS.filter((product) => {
-      if (product.categorySlug !== slug) return false
-
-      if (group && product.groupSlug !== group.slug) {
+      if (
+        product.categorySlug !== slug
+      ) {
         return false
       }
 
-      if (child && product.subcategorySlug !== child.slug) {
+      if (
+        group &&
+        product.groupSlug !== group.slug
+      ) {
+        return false
+      }
+
+      if (
+        child &&
+        product.subcategorySlug !== child.slug
+      ) {
         return false
       }
 
@@ -618,65 +872,111 @@ export default function ProductCategory() {
     })
   }, [slug, group, child])
 
+  /* =======================================
+     AVAILABLE FILTER OPTIONS
+  ======================================= */
+
   const brands = useMemo(
-    () => uniqueValues(scopedProducts, 'brand'),
+    () =>
+      uniqueValues(
+        scopedProducts,
+        'brand'
+      ),
     [scopedProducts]
   )
 
   const refrigerants = useMemo(
-    () => uniqueValues(scopedProducts, 'refrigerant'),
+    () =>
+      uniqueValues(
+        scopedProducts,
+        'refrigerant'
+      ),
     [scopedProducts]
   )
 
   const voltages = useMemo(
-    () => uniqueValues(scopedProducts, 'voltage'),
+    () =>
+      uniqueValues(
+        scopedProducts,
+        'voltage'
+      ),
     [scopedProducts]
   )
 
+  /* =======================================
+     FILTERED PRODUCTS
+  ======================================= */
+
   const filteredProducts = useMemo(() => {
-    const result = scopedProducts.filter((product) => {
-      const searchText = normalize([
-        product.title,
-        product.brand,
-        product.model,
-        product.oemCode,
-      ].join(' '))
+    const result = scopedProducts.filter(
+      (product) => {
+        const searchText = normalize(
+          [
+            product.title,
+            product.brand,
+            product.model,
+            product.oemCode,
+          ].join(' ')
+        )
 
-      if (search && !searchText.includes(normalize(search))) {
-        return false
+        if (
+          search &&
+          !searchText.includes(
+            normalize(search)
+          )
+        ) {
+          return false
+        }
+
+        if (
+          brand &&
+          product.brand !== brand
+        ) {
+          return false
+        }
+
+        if (
+          refrigerant &&
+          product.refrigerant !== refrigerant
+        ) {
+          return false
+        }
+
+        if (
+          voltage &&
+          product.voltage !== voltage
+        ) {
+          return false
+        }
+
+        return true
       }
-
-      if (brand && product.brand !== brand) return false
-
-      if (
-        refrigerant &&
-        product.refrigerant !== refrigerant
-      ) {
-        return false
-      }
-
-      if (voltage && product.voltage !== voltage) {
-        return false
-      }
-
-      return true
-    })
+    )
 
     if (sort === 'az') {
       result.sort((a, b) =>
-        a.title.localeCompare(b.title, 'az')
+        a.title.localeCompare(
+          b.title,
+          'az'
+        )
       )
     }
 
     if (sort === 'za') {
       result.sort((a, b) =>
-        b.title.localeCompare(a.title, 'az')
+        b.title.localeCompare(
+          a.title,
+          'az'
+        )
       )
     }
 
     if (sort === 'brand') {
       result.sort((a, b) =>
-        (a.brand ?? '').localeCompare(b.brand ?? '', 'az')
+        (a.brand ?? '').localeCompare(
+          b.brand ?? '',
+          'az'
+        )
       )
     }
 
@@ -690,35 +990,70 @@ export default function ProductCategory() {
     sort,
   ])
 
+  /* =======================================
+     UPDATE FILTER
+  ======================================= */
+
   function updateFilter(key, value) {
-    setSearchParams((previous) => {
-      const next = new URLSearchParams(previous)
+    setSearchParams(
+      (previous) => {
+        const next =
+          new URLSearchParams(previous)
 
-      if (!value || (key === 'sort' && value === 'default')) {
-        next.delete(key)
-      } else {
-        next.set(key, value)
+        if (
+          !value ||
+          (
+            key === 'sort' &&
+            value === 'default'
+          )
+        ) {
+          next.delete(key)
+        } else {
+          next.set(key, value)
+        }
+
+        return next
+      },
+      {
+        replace: true,
       }
-
-      return next
-    }, { replace: true })
+    )
   }
+
+  /* =======================================
+     CLEAR FILTERS
+  ======================================= */
 
   function clearFilters() {
-    setSearchParams(new URLSearchParams(), {
-      replace: true,
-    })
+    setSearchParams(
+      new URLSearchParams(),
+      {
+        replace: true,
+      }
+    )
   }
+
+  /* =======================================
+     INVALID CATEGORY
+  ======================================= */
 
   if (!category || invalidPath) {
     return (
       <main className="catalog-page">
         <div className="container">
           <div className="catalog-not-found">
-            <h1>Kateqoriya tapılmadı</h1>
+            <h1>
+              Kateqoriya tapılmadı
+            </h1>
+
+            <p>
+              Axtardığınız məhsul
+              kateqoriyası mövcud deyil.
+            </p>
 
             <Link to="/products">
               <ArrowLeft size={17} />
+
               Məhsullara qayıt
             </Link>
           </div>
@@ -727,9 +1062,16 @@ export default function ProductCategory() {
     )
   }
 
+  /* =======================================
+     PAGE
+  ======================================= */
+
   return (
     <main className="catalog-page">
       <div className="container">
+
+        {/* BREADCRUMB */}
+
         <CatalogBreadcrumb
           category={category}
           group={group}
@@ -737,14 +1079,24 @@ export default function ProductCategory() {
         />
 
         <div className="catalog-layout">
-          <CategorySidebar activeSlug={slug} />
+
+          {/* SIDEBAR */}
+
+          <CategorySidebar
+            activeSlug={slug}
+          />
+
+          {/* MAIN CONTENT */}
 
           <div className="catalog-main">
-            {/* IMAGE + CATEGORY TITLE */}
 
-            <CategoryHero category={category} />
+            {/* 01 — IMAGE + TITLE */}
 
-            {/* LEVEL 2 GROUPS */}
+            <CategoryHero
+              category={category}
+            />
+
+            {/* 02 — MAIN SUBCATEGORIES */}
 
             {groups.length > 0 && (
               <GroupSelector
@@ -754,7 +1106,7 @@ export default function ProductCategory() {
               />
             )}
 
-            {/* LEVEL 3 SUBCATEGORIES */}
+            {/* 03 — SELECTED GROUP CHILDREN */}
 
             {group && (
               <ChildSelector
@@ -764,7 +1116,7 @@ export default function ProductCategory() {
               />
             )}
 
-            {/* FILTERS */}
+            {/* 04 — FILTERS */}
 
             <CatalogFilters
               search={search}
@@ -777,10 +1129,12 @@ export default function ProductCategory() {
               voltages={voltages}
               onChange={updateFilter}
               onClear={clearFilters}
-              resultCount={filteredProducts.length}
+              resultCount={
+                filteredProducts.length
+              }
             />
 
-            {/* PRODUCTS */}
+            {/* 05 — PRODUCT RESULTS */}
 
             <section className="catalog-results">
               <div className="catalog-results__heading">
@@ -803,9 +1157,12 @@ export default function ProductCategory() {
 
               <ProductResults
                 products={filteredProducts}
-                hasAnyProducts={scopedProducts.length > 0}
+                hasAnyProducts={
+                  scopedProducts.length > 0
+                }
               />
             </section>
+
           </div>
         </div>
       </div>
