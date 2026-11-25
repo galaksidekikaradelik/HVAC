@@ -6,7 +6,7 @@ import PagePlaceholder from './components/ui/PagePlaceholder'
 
 import Home from './pages/Home'
 import Products from './pages/Products'
-import About from './pages/About'
+import FAQ from './pages/FAQ'
 import Contact from './pages/Contact'
 import ProductCategory from './pages/ProductCategory'
 
@@ -57,8 +57,8 @@ export default function App() {
             element={<Placeholder title="Məqalə" />}
           />
 
-          {/* ABOUT */}
-          <Route path="about" element={<About />} />
+          {/* FAQ */}
+          <Route path="about" element={<FAQ />} />
 
           {/* CONTACT */}
           <Route path="contact" element={<Contact />} />
